@@ -1,0 +1,67 @@
+version: "3.6"
+
+services:
+
+  consul_server:
+    build:
+      context: consul_server
+      dockerfile: Dockerfile
+    image: consul_server
+    ports:
+      - 8300:8300
+      - 8301:8301
+      - 8302:8302
+      - 8400:8400
+      - 8500:8500
+    environment:
+      - PRIVATE_IP_ADDRESS=33.10.0.2
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 10
+        window: 120s
+    networks:
+      consul_network:
+        ipv4_address: 33.10.0.2
+
+  mongo_1:
+    build:
+      context: mongo
+      dockerfile: Dockerfile
+    image: mongo_consul
+    ports: 
+      - 27017:27017
+    environment:
+      - MONGO_PORT=27017
+      - PRIVATE_IP_ADDRESS=33.10.0.3
+    restart: always
+    depends_on: 
+      - consul_server
+    networks:
+      consul_network:
+        ipv4_address: 33.10.0.3
+
+  mongo_2:
+    build:
+      context: mongo
+      dockerfile: Dockerfile
+    image: mongo_consul
+    ports: 
+      - 27018:27017
+    environment:
+      - MONGO_PORT=27017
+      - PRIVATE_IP_ADDRESS=33.10.0.4
+    restart: always
+    depends_on: 
+      - consul_server
+    networks:
+      consul_network:
+        ipv4_address: 33.10.0.4
+
+networks:
+  consul_network:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 33.10.0.0/16
