@@ -59,6 +59,38 @@ services:
       consul_network:
         ipv4_address: 33.10.0.4
 
+  web_1:
+    build:
+      context: django
+      dockerfile: Dockerfile
+    image: web_consul
+    ports:
+      - 8080:8000
+    restart: always
+    depends_on:
+      - consul_server
+    volumes:
+      - ./django:/web
+    networks:
+      consul_network:
+        ipv4_address: 33.10.0.10
+
+  web_2:
+    build:
+      context: django
+      dockerfile: Dockerfile
+    image: web_consul
+    ports:
+      - 8081:8000
+    restart: always
+    depends_on:
+      - consul_server
+    volumes:
+      - ./django:/web
+    networks:
+      consul_network:
+        ipv4_address: 33.10.0.11
+
 networks:
   consul_network:
     driver: bridge
