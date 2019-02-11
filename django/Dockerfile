@@ -1,5 +1,10 @@
 FROM python:3.7
 
+RUN apt-get update && \
+    apt-get install -y \
+    bash curl net-tools \
+    zip unzip jq dnsutils
+
 # Python Environment Setup
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
