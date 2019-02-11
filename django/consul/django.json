@@ -1,0 +1,10 @@
+{
+    "service": {
+        "name": "web",
+        "port": 8000,
+        "tags": [
+            "web",
+            "application"
+        ]
+    }
+}

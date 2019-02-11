@@ -18,7 +18,7 @@ RUN cd /bin && unzip /tmp/consul.zip && chmod +x /bin/consul && rm /tmp/consul.z
 ADD https://github.com/mattn/goreman/releases/download/v0.0.10/goreman_linux_amd64.zip /tmp/goreman.zip
 RUN cd /bin && unzip /tmp/goreman.zip && chmod +x /bin/goreman && rm /tmp/goreman.zip
 
-ADD ./config/consul /etc/consul.d
+ADD ./consul /etc/consul.d
 ADD Procfile /root/Procfile
 
 # Install pipenv
