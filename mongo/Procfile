@@ -1,5 +1,5 @@
 # Mongo
-mongo: /usr/bin/mongod --port $MONGO_PORT --dbpath /data/db
+mongo: /usr/bin/mongod --port $MONGO_PORT --dbpath /data/db --config /etc/mongod.conf
 
 # Consul Client Agent
 consul: consul agent -bind $PRIVATE_IP_ADDRESS -advertise $PRIVATE_IP_ADDRESS -join consul_server -data-dir /data -config-dir /etc/consul.d -enable-local-script-checks

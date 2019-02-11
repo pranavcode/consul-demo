@@ -16,7 +16,8 @@ RUN cd /bin && unzip /tmp/goreman.zip && chmod +x /bin/goreman && rm /tmp/gorema
 
 VOLUME data:/data/db
 
-ADD ./config /etc/consul.d
+ADD ./config/consul /etc/consul.d
+ADD ./config/mongod /etc
 ADD Procfile /root/Procfile
 
 ENV PRIVATE_IP_ADDRESS $PRIVATE_IP_ADDRESS
