@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "68309cd71a258c30a39567fce09a09ad5c4ff0bdc85b6fba22b47598c985c883"
+            "sha256": "451e917ae8ccdbf7e2824475a2059a4a751d3603988d5196a8e79ac8a7a17c71"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,13 +16,41 @@
         ]
     },
     "default": {
+        "dataclasses": {
+            "hashes": [
+                "sha256:454a69d788c7fda44efd71e259be79577822f5e3f53f029a22d08004e951dc9f"
+            ],
+            "version": "==0.6"
+        },
         "django": {
             "hashes": [
-                "sha256:a32c22af23634e1d11425574dce756098e015a165be02e4690179889b207c7a8",
-                "sha256:d6393918da830530a9516bbbcbf7f1214c3d733738779f06b0f649f49cc698c3"
+                "sha256:275bec66fd2588dd517ada59b8bfb23d4a9abc5a362349139ddda3c7ff6f5ade",
+                "sha256:939652e9d34d7d53d74d5d8ef82a19e5f8bb2de75618f7e5360691b6e9667963"
             ],
             "index": "pypi",
-            "version": "==2.1.5"
+            "version": "==2.1.7"
+        },
+        "djongo": {
+            "hashes": [
+                "sha256:4479bf78e5a6aba0632006e7b3d691f448b46c98b30e68be7a282d0204191513",
+                "sha256:63d4637500d2c9f066a84ac1a29bfa5f0d7a0b453c577b34d6fb4690ff101dc5"
+            ],
+            "index": "pypi",
+            "version": "==1.2.31"
+        },
+        "gunicorn": {
+            "hashes": [
+                "sha256:aa8e0b40b4157b36a5df5e599f45c9c76d6af43845ba3b3b0efe2c70473c2471",
+                "sha256:fa2662097c66f920f53f70621c6c58ca4a3c4d3434205e608e121b5b3b71f4f3"
+            ],
+            "index": "pypi",
+            "version": "==19.9.0"
+        },
+        "pymongo": {
+            "hashes": [
+                "sha256:22e3aa4ce1c3eebc7f70f9ca7fd4ce1ea33e8bdb7b61996806cd312f08f84a3a"
+            ],
+            "version": "==3.7.2"
         },
         "pytz": {
             "hashes": [
@@ -30,6 +58,12 @@
                 "sha256:d5f05e487007e29e03409f9398d074e158d920d36eb82eaf66fb1136b0c5374c"
             ],
             "version": "==2018.9"
+        },
+        "sqlparse": {
+            "hashes": [
+                "sha256:d9cf190f51cbb26da0412247dfe4fb5f4098edb73db84e02f9fc21fdca31fed4"
+            ],
+            "version": "==0.2.4"
         }
     },
     "develop": {}
