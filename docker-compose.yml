@@ -83,6 +83,8 @@ services:
     image: web_consul
     ports:
       - 8080:8000
+    environment:
+      - PRIVATE_IP_ADDRESS=33.10.0.10
     restart: always
     depends_on:
       - consul_server
@@ -99,6 +101,8 @@ services:
     image: web_consul
     ports:
       - 8081:8000
+    environment:
+      - PRIVATE_IP_ADDRESS=33.10.0.11
     restart: always
     depends_on:
       - consul_server
