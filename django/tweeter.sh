@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Migrate DB for Django API
 python ./manage.py migrate
 

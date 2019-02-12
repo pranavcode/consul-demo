@@ -3,13 +3,14 @@ FROM python:3.7
 RUN apt-get update && \
     apt-get install -y \
     bash curl net-tools \
-    zip unzip jq dnsutils
+    zip unzip jq dnsutils \
+    iputils-ping
 
 # Python Environment Setup
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# Install consul and goreman
+# Setup Consul and Goreman
 RUN mkdir -p /data/db /etc/consul.d
 
 ADD https://releases.hashicorp.com/consul/1.4.1/consul_1.4.1_linux_amd64.zip /tmp/consul.zip
