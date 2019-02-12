@@ -30,13 +30,13 @@ services:
       context: mongo
       dockerfile: Dockerfile
     image: mongo_consul
-    ports: 
+    ports:
       - 27017:27017
     environment:
       - MONGO_PORT=27017
       - PRIVATE_IP_ADDRESS=33.10.0.3
     restart: always
-    depends_on: 
+    depends_on:
       - consul_server
     networks:
       consul_network:
@@ -47,17 +47,34 @@ services:
       context: mongo
       dockerfile: Dockerfile
     image: mongo_consul
-    ports: 
+    ports:
       - 27018:27017
     environment:
       - MONGO_PORT=27017
       - PRIVATE_IP_ADDRESS=33.10.0.4
     restart: always
-    depends_on: 
+    depends_on:
       - consul_server
     networks:
       consul_network:
         ipv4_address: 33.10.0.4
+
+  mongo_3:
+    build:
+      context: mongo
+      dockerfile: Dockerfile
+    image: mongo_consul
+    ports:
+      - 27019:27017
+    environment:
+      - MONGO_PORT=27017
+      - PRIVATE_IP_ADDRESS=33.10.0.5
+    restart: always
+    depends_on:
+      - consul_server
+    networks:
+      consul_network:
+        ipv4_address: 33.10.0.5
 
   web_1:
     build:
