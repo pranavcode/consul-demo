@@ -26,6 +26,7 @@ RUN pip3 install --upgrade pip
 RUN pip3 install pipenv
 
 # Setting workdir
+ADD . /web
 WORKDIR /web/tweeter
 
 # Exposing appropriate ports
