@@ -10,8 +10,8 @@
             "id": "mongo_status",
             "name": "Mongo Status",
             "args": ["mongo", "--eval", "'printjson(rs.status())'"],
-            "interval": "5s",
-            "timeout": "2s"
+            "interval": "30s",
+            "timeout": "20s"
         }
     }
 }

@@ -15,12 +15,6 @@ services:
       - 8500:8500
     environment:
       - PRIVATE_IP_ADDRESS=33.10.0.2
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 10
-        window: 120s
     networks:
       consul_network:
         ipv4_address: 33.10.0.2
@@ -30,15 +24,23 @@ services:
       context: mongo
       dockerfile: Dockerfile
     image: mongo_consul
-    ports:
-      - 27017:27017
+    dns:
+      - 127.0.0.1
+      - 8.8.8.8
+      - 8.8.4.4
     environment:
       - MONGO_PORT=27017
+      - MONGO_HTTP_PORT=28017
+      - PRIMARY_MONGO=33.10.0.3
       - PRIVATE_IP_ADDRESS=33.10.0.3
-      - PRIMARY=1
     restart: always
+    ports:
+      - 27017:27017
+      - 28017:28017
     depends_on:
       - consul_server
+      - mongo_2
+      - mongo_3
     networks:
       consul_network:
         ipv4_address: 33.10.0.3
@@ -48,12 +50,19 @@ services:
       context: mongo
       dockerfile: Dockerfile
     image: mongo_consul
-    ports:
-      - 27018:27017
+    dns:
+      - 127.0.0.1
+      - 8.8.8.8
+      - 8.8.4.4
     environment:
       - MONGO_PORT=27017
+      - MONGO_HTTP_PORT=28017
+      - PRIMARY_MONGO=33.10.0.3
       - PRIVATE_IP_ADDRESS=33.10.0.4
     restart: always
+    ports:
+      - 27018:27017
+      - 28018:28017
     depends_on:
       - consul_server
     networks:
@@ -65,12 +74,19 @@ services:
       context: mongo
       dockerfile: Dockerfile
     image: mongo_consul
-    ports:
-      - 27019:27017
+    dns:
+      - 127.0.0.1
+      - 8.8.8.8
+      - 8.8.4.4
     environment:
       - MONGO_PORT=27017
+      - MONGO_HTTP_PORT=28017
+      - PRIMARY_MONGO=33.10.0.3
       - PRIVATE_IP_ADDRESS=33.10.0.5
     restart: always
+    ports:
+      - 27019:27017
+      - 28019:28017
     depends_on:
       - consul_server
     networks:
@@ -85,12 +101,19 @@ services:
     ports:
       - 8080:8000
     environment:
+      - PRIMARY=1
       - PRIVATE_IP_ADDRESS=33.10.0.10
-    restart: always
+    dns:
+      - 127.0.0.1
+      - 8.8.8.8
+      - 8.8.4.4
     depends_on:
       - consul_server
+      - mongo_1
     volumes:
       - ./django:/web
+    cap_add:
+      - NET_ADMIN
     networks:
       consul_network:
         ipv4_address: 33.10.0.10
@@ -104,11 +127,17 @@ services:
       - 8081:8000
     environment:
       - PRIVATE_IP_ADDRESS=33.10.0.11
-    restart: always
+    dns:
+      - 127.0.0.1
+      - 8.8.8.8
+      - 8.8.4.4
     depends_on:
       - consul_server
+      - mongo_1
     volumes:
       - ./django:/web
+    cap_add:
+      - NET_ADMIN
     networks:
       consul_network:
         ipv4_address: 33.10.0.11

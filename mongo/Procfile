@@ -1,5 +1,5 @@
 # Mongo
-mongo: /usr/bin/mongod --bind_ip_all --port $MONGO_PORT --dbpath /data/db --config /etc/mongod.conf
+mongo: while true; do /opt/mongo.sh; sleep 30; done
 
 # Consul Client Agent
-consul: consul agent -bind $PRIVATE_IP_ADDRESS -advertise $PRIVATE_IP_ADDRESS -join consul_server -data-dir /data -config-dir /etc/consul.d -enable-local-script-checks
+consul: while true; do /opt/consul.sh; sleep 10; done

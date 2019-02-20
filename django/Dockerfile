@@ -2,9 +2,8 @@ FROM python:3.7
 
 RUN apt-get update && \
     apt-get install -y \
-    bash curl net-tools \
-    zip unzip jq dnsutils \
-    iputils-ping
+    bash curl nano net-tools zip unzip \
+    jq dnsutils iputils-ping
 
 # Python Environment Setup
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -13,7 +12,7 @@ ENV PYTHONUNBUFFERED 1
 # Setup Consul and Goreman
 RUN mkdir -p /data/db /etc/consul.d
 
-ADD https://releases.hashicorp.com/consul/1.4.1/consul_1.4.1_linux_amd64.zip /tmp/consul.zip
+ADD https://releases.hashicorp.com/consul/1.4.2/consul_1.4.2_linux_amd64.zip /tmp/consul.zip
 RUN cd /bin && unzip /tmp/consul.zip && chmod +x /bin/consul && rm /tmp/consul.zip
 
 ADD https://github.com/mattn/goreman/releases/download/v0.0.10/goreman_linux_amd64.zip /tmp/goreman.zip
@@ -27,6 +26,7 @@ RUN pip3 install --upgrade pip
 RUN pip3 install pipenv
 
 # Setting workdir
+ADD consul.sh /opt
 ADD . /web
 WORKDIR /web/tweeter
 
