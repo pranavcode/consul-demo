@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tweeter',
+    'tweetapp',
 ]
 
 MIDDLEWARE = [
@@ -79,7 +79,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'db',
-        'HOST': 'mongodb://mongo.service.consul',
+        'HOST': 'mongodb://mongo-primary.service.consul',
         'PORT': 27017,
         'ENFORCE_SCHEMA': True,
     }
