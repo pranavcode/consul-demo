@@ -6,4 +6,5 @@ consul agent -server \
     -advertise $PRIVATE_IP_ADDRESS \
     -dns-port 53 \
     -data-dir /data \
-    -bootstrap
+    -config-dir /etc/consul.d \
+    -ui -bootstrap

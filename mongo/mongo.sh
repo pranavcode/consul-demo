@@ -5,7 +5,7 @@ nohup /usr/bin/mongod --bind_ip_all --port $MONGO_PORT --dbpath /data/db --replS
 
 # Replica set configuration
 # Wait until Mongo ready
-until [[ $(mongo --quiet --eval 'db.stats()' | jq -r .ok) -eq 1 ]]; do
+until [[ $(mongo --quiet --eval 'JSON.stringify(db.stats())' | jq -r .ok 2> /dev/null) -eq 1 ]]; do
     sleep 3
 done
 

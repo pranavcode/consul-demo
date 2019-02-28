@@ -9,6 +9,7 @@ verify_ssl = true
 django = "*"
 gunicorn = "*"
 djongo = "*"
+pymongo = "*"
 
 [requires]
 python_version = "3.6"

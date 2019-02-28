@@ -33,10 +33,6 @@ WORKDIR /web/tweeter
 # Exposing appropriate ports
 EXPOSE 8000/tcp
 
-# Adding pipfiles
-COPY Pipfile Pipfile
-COPY Pipfile.lock Pipfile.lock
-
 # Install dependencies
 RUN pipenv install --system --deploy --ignore-pipfile
 

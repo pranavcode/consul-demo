@@ -25,18 +25,18 @@
             <tbody>
                 <tr>
                     <td>1</td>
-                    <td>Mongo Host</td>
-                    <td>{{ mongo_host }}</td>
+                    <td>Mongo Hosts</td>
+                    <td>{% for host in mongo_hosts %}{{ host }}<br/>{% endfor %}</td>
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td>Mongo Port</td>
-                    <td>{{ mongo_port }}</td>
+                    <td>Mongo Primary Address</td>
+                    <td>{{ mongo_primary_host }}</td>
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td>Mongo Address</td>
-                    <td>{{ mongo_address }}</td>
+                    <td>Mongo Connected Address</td>
+                    <td>{{ mongo_connected_host }}</td>
                 </tr>
                 <tr>
                     <td>4</td>
@@ -45,8 +45,8 @@
                 </tr>
                 <tr>
                     <td>5</td>
-                    <td>Mongo Secondaries</td>
-                    <td>{{ mongo_secondaries }}</td>
+                    <td>Mongo - Is Secondary?</td>
+                    <td>{{ mongo_is_secondary }}</td>
                 </tr>
             </tbody>
         </table>

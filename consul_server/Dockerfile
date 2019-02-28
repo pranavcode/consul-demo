@@ -11,6 +11,9 @@ RUN cd /bin && unzip /tmp/consul.zip && chmod +x /bin/consul && rm /tmp/consul.z
 # Consul ports
 EXPOSE 8300 8301 8302 8400 8500
 
+RUN mkdir -p /etc/consul.d
+ADD ./config /etc/consul.d
+
 ADD consul_server.sh /opt
 RUN mkdir -p /data
 VOLUME /data

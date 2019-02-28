@@ -14,4 +14,4 @@ fi
 python ./manage.py collectstatic --noinput
 
 # Run background task processor and Django API server
-gunicorn -w 3 --bind 0.0.0.0:8000 --access-logfile - tweeter.wsgi:application
+gunicorn -w 1 --bind 0.0.0.0:8000 --access-logfile - tweeter.wsgi:application
