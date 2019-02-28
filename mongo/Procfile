@@ -1,5 +1,5 @@
 # Mongo
-mongo: while true; do /opt/mongo.sh; sleep 30; done
+mongo: /opt/mongo.sh
 
 # Consul Client Agent
-consul: while true; do /opt/consul.sh; sleep 10; done
+consul: /opt/consul.sh

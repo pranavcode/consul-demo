@@ -1,0 +1,17 @@
+{
+    "service": {
+        "name": "mongo-secondary",
+        "port": 27017,
+        "tags": [
+            "nosql",
+            "database"
+        ],
+        "check": {
+            "id": "mongo_secondary_status",
+            "name": "Mongo Secondary Status",
+            "args": ["/etc/consul.d/check_scripts/mongo_secondary_check.sh"],
+            "interval": "30s",
+            "timeout": "20s"
+        }
+    }
+}
