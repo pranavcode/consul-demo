@@ -4,3 +4,5 @@ mongo_primary=$(mongo --quiet --eval 'JSON.stringify(db.isMaster())' | jq -r .is
 if [[ $mongo_primary == false ]]; then
     exit 1
 fi
+
+echo "Mongo primary healthy and reachable"

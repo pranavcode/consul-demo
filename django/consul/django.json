@@ -5,6 +5,13 @@
         "tags": [
             "web",
             "application"
-        ]
+        ],
+        "check": {
+            "id": "web_app_status",
+            "name": "Web Application Status",
+            "tcp": "localhost:8000",
+            "interval": "30s",
+            "timeout": "20s"
+        }
     }
 }

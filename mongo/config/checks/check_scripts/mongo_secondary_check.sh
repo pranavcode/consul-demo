@@ -4,3 +4,5 @@ mongo_secondary=$(mongo --quiet --eval 'JSON.stringify(db.isMaster())' | jq -r .
 if [[ $mongo_secondary == false ]]; then
     exit 1
 fi
+
+echo "Mongo secondary healthy and reachable"

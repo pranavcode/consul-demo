@@ -3,3 +3,6 @@ mongo: /opt/mongo.sh
 
 # Consul Client Agent
 consul: /opt/consul.sh
+
+# Consul Client Health Checks
+consul_check: while true; do /opt/checks_toggler.sh && sleep 10; done

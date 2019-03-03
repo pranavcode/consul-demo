@@ -9,7 +9,7 @@ RUN apt-get update && \
 RUN apt-get install -y mongodb
 
 # Setup Consul and Goreman
-RUN mkdir -p /data/db /etc/consul.d
+RUN mkdir -p /data/db
 
 ADD https://releases.hashicorp.com/consul/1.4.2/consul_1.4.2_linux_amd64.zip /tmp/consul.zip
 RUN cd /bin && unzip /tmp/consul.zip && chmod +x /bin/consul && rm /tmp/consul.zip
@@ -19,10 +19,16 @@ RUN cd /bin && unzip /tmp/goreman.zip && chmod +x /bin/goreman && rm /tmp/gorema
 
 VOLUME data:/data/db
 
-ADD ./config/consul /etc/consul.d
+RUN mkdir -p /etc/consul.d/check_scripts
 ADD ./config/mongod /etc
+
+RUN mkdir -p /etc/checks
+ADD ./config/checks /opt/checks
+
+ADD checks_toggler.sh /opt
 ADD mongo.sh /opt
 ADD consul.sh /opt
+
 ADD Procfile /root/Procfile
 
 EXPOSE $MONGO_PORT

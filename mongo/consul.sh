@@ -1,4 +1,5 @@
 #!/bin/bash
+
 consul agent -bind $PRIVATE_IP_ADDRESS \
     -advertise $PRIVATE_IP_ADDRESS \
     -join consul_server \
