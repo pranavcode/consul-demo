@@ -15,6 +15,7 @@ services:
       - 8500:8500
     environment:
       - PRIVATE_IP_ADDRESS=33.10.0.2
+    network_mode: host
     networks:
       consul_network:
         ipv4_address: 33.10.0.2
