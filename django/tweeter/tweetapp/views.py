@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from pymongo import MongoClient
 
-# Create your views here.
 def home(request):
     client = MongoClient("mongo-primary.service.consul")
     replica_set = client.admin.command('ismaster')
