@@ -19,6 +19,16 @@ services:
       consul_network:
         ipv4_address: 33.10.0.2
 
+  load_balancer:
+    image: fabiolb/fabio
+    ports:
+      - 9998:9998
+      - 9999:9999
+    command: -registry.consul.addr="33.10.0.2:8500"
+    networks:
+      consul_network:
+        ipv4_address: 33.10.0.100
+
   mongo_1:
     build:
       context: mongo
@@ -99,6 +109,7 @@ services:
       - 8080:8000
     environment:
       - PRIMARY=1
+      - LOAD_BALANCER=33.10.0.100
       - PRIVATE_IP_ADDRESS=33.10.0.10
     dns:
       - 127.0.0.1
@@ -123,6 +134,7 @@ services:
     ports:
       - 8081:8000
     environment:
+      - LOAD_BALANCER=33.10.0.100
       - PRIVATE_IP_ADDRESS=33.10.0.11
     dns:
       - 127.0.0.1

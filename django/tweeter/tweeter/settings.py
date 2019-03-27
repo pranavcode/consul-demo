@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
+    os.environ.get('LOAD_BALANCER'),
 ]
 
 # Application definition

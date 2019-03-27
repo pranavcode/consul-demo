@@ -4,7 +4,8 @@
         "port": 8000,
         "tags": [
             "web",
-            "application"
+            "application",
+            "urlprefix-/web"
         ],
         "check": {
             "id": "web_app_status",
