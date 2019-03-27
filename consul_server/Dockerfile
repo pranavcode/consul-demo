@@ -5,7 +5,7 @@ RUN apt-get update && \
     bash curl nano net-tools zip unzip \
     jq dnsutils iputils-ping
 
-ADD https://releases.hashicorp.com/consul/1.4.2/consul_1.4.2_linux_amd64.zip /tmp/consul.zip
+ADD https://releases.hashicorp.com/consul/1.4.4/consul_1.4.4_linux_amd64.zip /tmp/consul.zip
 RUN cd /bin && unzip /tmp/consul.zip && chmod +x /bin/consul && rm /tmp/consul.zip
 
 # Consul ports

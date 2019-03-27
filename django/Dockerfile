@@ -12,7 +12,7 @@ ENV PYTHONUNBUFFERED 1
 # Setup Consul and Goreman
 RUN mkdir -p /data/db /etc/consul.d
 
-ADD https://releases.hashicorp.com/consul/1.4.2/consul_1.4.2_linux_amd64.zip /tmp/consul.zip
+ADD https://releases.hashicorp.com/consul/1.4.4/consul_1.4.4_linux_amd64.zip /tmp/consul.zip
 RUN cd /bin && unzip /tmp/consul.zip && chmod +x /bin/consul && rm /tmp/consul.zip
 
 ADD https://github.com/mattn/goreman/releases/download/v0.0.10/goreman_linux_amd64.zip /tmp/goreman.zip
