@@ -2,7 +2,7 @@ version: "3.6"
 
 services:
 
-  consul_server:
+  consul_server_dc1:
     build:
       context: consul_server
       dockerfile: Dockerfile
@@ -14,10 +14,29 @@ services:
       - 8400:8400
       - 8500:8500
     environment:
+      - DATACENTER=dc1
       - PRIVATE_IP_ADDRESS=33.10.0.2
     networks:
       consul_network:
         ipv4_address: 33.10.0.2
+
+  consul_server_dc2:
+    build:
+      context: consul_server
+      dockerfile: Dockerfile
+    image: consul_server
+    ports:
+      - 10300:8300
+      - 10301:8301
+      - 10302:8302
+      - 10400:8400
+      - 10500:8500
+    environment:
+      - DATACENTER=dc2
+      - PRIVATE_IP_ADDRESS=33.10.0.22
+    networks:
+      consul_network:
+        ipv4_address: 33.10.0.22
 
   load_balancer:
     image: fabiolb/fabio
@@ -39,6 +58,7 @@ services:
       - 8.8.8.8
       - 8.8.4.4
     environment:
+      - DATACENTER=dc1
       - MONGO_PORT=27017
       - PRIMARY_MONGO=33.10.0.3
       - PRIVATE_IP_ADDRESS=33.10.0.3
@@ -47,7 +67,8 @@ services:
       - 27017:27017
       - 28017:28017
     depends_on:
-      - consul_server
+      - consul_server_dc1
+      - consul_server_dc2
       - mongo_2
       - mongo_3
     networks:
@@ -64,6 +85,7 @@ services:
       - 8.8.8.8
       - 8.8.4.4
     environment:
+      - DATACENTER=dc2
       - MONGO_PORT=27017
       - PRIMARY_MONGO=33.10.0.3
       - PRIVATE_IP_ADDRESS=33.10.0.4
@@ -72,7 +94,8 @@ services:
       - 27018:27017
       - 28018:28017
     depends_on:
-      - consul_server
+      - consul_server_dc1
+      - consul_server_dc2
     networks:
       consul_network:
         ipv4_address: 33.10.0.4
@@ -87,6 +110,7 @@ services:
       - 8.8.8.8
       - 8.8.4.4
     environment:
+      - DATACENTER=dc1
       - MONGO_PORT=27017
       - PRIMARY_MONGO=33.10.0.3
       - PRIVATE_IP_ADDRESS=33.10.0.5
@@ -95,7 +119,8 @@ services:
       - 27019:27017
       - 28019:28017
     depends_on:
-      - consul_server
+      - consul_server_dc1
+      - consul_server_dc2
     networks:
       consul_network:
         ipv4_address: 33.10.0.5
@@ -108,6 +133,7 @@ services:
     ports:
       - 8080:8000
     environment:
+      - DATACENTER=dc1
       - PRIMARY=1
       - LOAD_BALANCER=33.10.0.100
       - PRIVATE_IP_ADDRESS=33.10.0.10
@@ -116,7 +142,8 @@ services:
       - 8.8.8.8
       - 8.8.4.4
     depends_on:
-      - consul_server
+      - consul_server_dc1
+      - consul_server_dc2
       - mongo_1
     volumes:
       - ./django:/web
@@ -134,6 +161,7 @@ services:
     ports:
       - 8081:8000
     environment:
+      - DATACENTER=dc2
       - LOAD_BALANCER=33.10.0.100
       - PRIVATE_IP_ADDRESS=33.10.0.11
     dns:
@@ -141,7 +169,8 @@ services:
       - 8.8.8.8
       - 8.8.4.4
     depends_on:
-      - consul_server
+      - consul_server_dc1
+      - consul_server_dc2
       - mongo_1
     volumes:
       - ./django:/web

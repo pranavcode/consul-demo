@@ -7,4 +7,6 @@ consul agent -server \
     -client 0.0.0.0 \
     -dns-port 53 \
     -data-dir /data \
+    -config-dir /etc/consul.d \
+    -datacenter $DATACENTER \
     -ui -bootstrap

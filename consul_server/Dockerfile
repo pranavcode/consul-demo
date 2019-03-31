@@ -8,6 +8,9 @@ RUN apt-get update && \
 ADD https://releases.hashicorp.com/consul/1.4.4/consul_1.4.4_linux_amd64.zip /tmp/consul.zip
 RUN cd /bin && unzip /tmp/consul.zip && chmod +x /bin/consul && rm /tmp/consul.zip
 
+RUN mkdir -p /etc/consul.d
+ADD ./consul /etc/consul.d
+
 # Consul ports
 EXPOSE 8300 8301 8302 8400 8500
 
