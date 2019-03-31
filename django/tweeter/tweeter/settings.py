@@ -9,6 +9,12 @@ https://docs.djangoproject.com/en/2.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
+# Connect to Consul
+import consul
+consul_client = consul.Consul(
+    host='consul_server',
+    port=8500,
+)
 
 import os
 
@@ -23,12 +29,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '8g+m=$k4afo#11qm&af!g)j5i#2uayep&)hagq4mbg57#%@wx1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+index, data = consul_client.kv.get('web/debug')
+DEBUG = data.get('Value', True)
 
-ALLOWED_HOSTS = [
-    'localhost',
-    os.environ.get('LOAD_BALANCER'),
-]
+ALLOWED_HOSTS = []
+
+index, hosts = consul_client.kv.get('web/allowed_hosts')
+ALLOWED_HOSTS.append(hosts.get('Value'))
 
 # Application definition
 
@@ -39,8 +46,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tweetapp',
 ]
+
+index, apps = consul_client.kv.get('web/installed_apps')
+INSTALLED_APPS += (bytes(apps.get('Value')).decode('utf-8'),)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

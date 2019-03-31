@@ -5,6 +5,12 @@ while [[ $(ping -c1 mongo-primary.service.consul > /dev/null 2>&1 && echo $?) -n
     sleep 10
 done
 
+# Setup Consul KV for Django Configuration
+# Note: This is for demonstration purposes only,
+# should use other mechanism/tool for managing
+# Consul's key/value store.
+/etc/consul.d/setup_env.sh
+
 # Migrate database
 if [[ $PRIMARY -eq 1 ]]; then
     python ./manage.py migrate

@@ -10,6 +10,7 @@ django = "*"
 gunicorn = "*"
 djongo = "*"
 pymongo = "*"
+python-consul = "*"
 
 [requires]
 python_version = "3.6"
