@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Check the availability of Mongo server
-while [[ $(ping -c1 mongo-primary.service.consul > /dev/null 2>&1 && echo $?) -ne 0 ]]; do
+while [[ $(ping -qc1 mongo-primary.service.consul > /dev/null 2>&1 && echo $?) -ne 0 ]]; do
+    echo "Waiting for MongoDB Primary"
     sleep 10
 done
 
