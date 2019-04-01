@@ -3,3 +3,6 @@ django: /web/tweeter.sh
 
 # Consul Client Agent
 consul: /opt/consul.sh
+
+# Consul Connect Sidecar Proxy
+consul_connect_sidecar: /opt/consul_connect_sidecar.sh

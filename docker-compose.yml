@@ -135,7 +135,10 @@ services:
       dockerfile: Dockerfile
     image: web_consul
     ports:
+      - 5501:5501
       - 8080:8000
+      - 21000:21000
+      - 21001:21001
     environment:
       - DATACENTER=dc1
       - NODE=web_1
@@ -164,7 +167,10 @@ services:
       dockerfile: Dockerfile
     image: web_consul
     ports:
+      - 5502:5501
       - 8081:8000
+      - 22000:21000
+      - 22001:21001
     environment:
       - DATACENTER=dc2
       - NODE=web_2

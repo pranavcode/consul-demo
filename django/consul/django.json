@@ -7,6 +7,16 @@
             "application",
             "urlprefix-/web"
         ],
+        "connect": {
+            "sidecar_service": {
+                "proxy": {
+                    "upstreams": [{
+                        "destination_name": "mongo-primary",
+                        "local_bind_port": 5501
+                    }]
+                }
+            }
+        },
         "check": {
             "id": "web_app_status",
             "name": "Web Application Status",

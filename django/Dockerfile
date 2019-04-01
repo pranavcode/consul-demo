@@ -27,11 +27,12 @@ RUN pip3 install pipenv
 
 # Setting workdir
 ADD consul.sh /opt
+ADD consul_connect_sidecar.sh /opt
 ADD . /web
 WORKDIR /web/tweeter
 
 # Exposing appropriate ports
-EXPOSE 8000/tcp
+EXPOSE 5501 8000 21000 21001
 
 # Install dependencies
 RUN pipenv install --system --deploy --ignore-pipfile
