@@ -29,7 +29,7 @@ docker-compose up --build -d
 
 ## Consul Server
 
-You can visit Consul Server container with the IP it's container was assigned. For instance, in our case it was [172.18.0.2:5300/ui](http://172.18.0.2:5300/ui).
+You can visit Consul Server container with the IP it's container was assigned. For instance, in our case it was [http://33.10.0.2:8500/ui](http://33.10.0.2:8500/ui).
 
 ## Django Web App via Fabio LB
 
